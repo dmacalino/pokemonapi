@@ -1,39 +1,111 @@
-const pokemon = [
+const pokemonData = [
   {
-    name: "Charmander",
-    type: "fire"
+    id: "#016",
+    bgNumber: "#016",
+    name: "PIDGEY",
+    types: ["normal", "flying"],
+    height: "3M",
+    weight: "18KG",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/16.png"
   },
   {
-    name: "Squirtle",
-    type: "water"
+    id: "#004",
+    bgNumber: "#004",
+    name: "CHARMANDER",
+    types: ["fire"],
+    height: "6M",
+    weight: "85KG",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png"
   },
   {
-    name: "Pidgey",
-    type: "normal"
+    id: "#007",
+    bgNumber: "#007",
+    name: "SQUIRTLE",
+    types: ["water"],
+    height: "5M",
+    weight: "90KG",
+    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png"
   }
-]
+];
 
-function showType(type){
+const container = document.getElementById("pokemon-container");
+const buttons = document.querySelectorAll(".filter-btn");
 
-  const container = document.getElementById("pokemon-container")
-
-  container.innerHTML = ""
-
-  pokemon.forEach(p => {
-
-    if(type === "all" || p.type === type){
-
-      container.innerHTML += `
-        <div class="card">
-          <h2>${p.name}</h2>
-          <p class="type">${p.type}</p>
-        </div>
-      `
-
-    }
-
-  })
-
+function createTypePills(types) {
+  return types
+    .map((type) => `<span class="type-pill ${type}">${type.toUpperCase()}</span>`)
+    .join("");
 }
 
-showType("all")
+function renderPokemon(list) {
+  container.innerHTML = "";
+
+  if (list.length === 0) {
+    container.innerHTML = `<p class="empty-state">No Pokémon found.</p>`;
+    return;
+  }
+
+  list.forEach((pokemon) => {
+    const card = `
+      <div class="card-shell">
+        <article class="card">
+          <div class="bg-number">${pokemon.bgNumber}</div>
+
+          <img
+            class="pokemon-image"
+            src="${pokemon.image}"
+            alt="${pokemon.name}"
+          />
+
+          <div class="id-name-row">
+            <span class="id-badge">${pokemon.id}</span>
+            <h2 class="name">${pokemon.name}</h2>
+          </div>
+
+          <div class="types">
+            ${createTypePills(pokemon.types)}
+          </div>
+
+          <div class="stats">
+            <span class="stat-pill">${pokemon.height}</span>
+            <span class="stat-pill">${pokemon.weight}</span>
+          </div>
+        </article>
+      </div>
+    `;
+
+    container.innerHTML += card;
+  });
+}
+
+function setActiveButton(selectedType) {
+  buttons.forEach((button) => {
+    if (button.dataset.type === selectedType) {
+      button.classList.add("active");
+    } else {
+      button.classList.remove("active");
+    }
+  });
+}
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const selectedType = button.dataset.type;
+
+    setActiveButton(selectedType);
+
+    if (selectedType === "all") {
+      container.innerHTML = "";
+      return;
+    }
+
+    const filteredPokemon = pokemonData.filter((pokemon) =>
+      pokemon.types.includes(selectedType)
+    );
+
+    renderPokemon(filteredPokemon);
+  });
+});
+
+// starting screen like the slides: buttons only, no card shown
+container.innerHTML = "";
