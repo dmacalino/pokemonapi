@@ -1,74 +1,39 @@
-const pokemonData = [
+const pokemon = [
   {
-    id: "#016",
-    name: "Pidgey",
-    type: ["normal"],
-    height: "3M",
-    weight: "18KG",
-    image: "img/pidgey.png"
-  },
-  {
-    id: "#004",
     name: "Charmander",
-    type: ["fire"],
-    height: "6M",
-    weight: "85KG",
-    image: "img/charmander.png"
+    type: "fire"
   },
   {
-    id: "#007",
     name: "Squirtle",
-    type: ["water"],
-    height: "5M",
-    weight: "90KG",
-    image: "img/squirtle.png"
+    type: "water"
+  },
+  {
+    name: "Pidgey",
+    type: "normal"
   }
-];
+]
 
-const container = document.getElementById("pokemon-container");
+function showType(type){
 
-function renderPokemon(pokemonList) {
-  container.innerHTML = "";
+  const container = document.getElementById("pokemon-container")
 
-  pokemonList.forEach((pokemon) => {
-    const typeBadges = pokemon.type
-      .map(
-        (type) => `<span class="type-badge ${type}">${type}</span>`
-      )
-      .join("");
+  container.innerHTML = ""
 
-    const card = `
-      <div class="card">
-        <img src="${pokemon.image}" alt="${pokemon.name}">
-        <p class="number">${pokemon.id}</p>
-        <h2 class="name">${pokemon.name}</h2>
-        <div class="types">${typeBadges}</div>
-        <div class="stats">
-          <span>${pokemon.height}</span>
-          <span>${pokemon.weight}</span>
+  pokemon.forEach(p => {
+
+    if(type === "all" || p.type === type){
+
+      container.innerHTML += `
+        <div class="card">
+          <h2>${p.name}</h2>
+          <p class="type">${p.type}</p>
         </div>
-      </div>
-    `;
+      `
 
-    container.innerHTML += card;
-  });
+    }
+
+  })
+
 }
 
-const buttons = document.querySelectorAll(".filter-btn");
-
-buttons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const selectedType = button.dataset.type;
-
-    if (selectedType === "all") {
-      renderPokemon(pokemonData);
-    } else {
-      const filteredPokemon = pokemonData.filter((pokemon) =>
-        pokemon.type.includes(selectedType)
-      );
-      renderPokemon(filteredPokemon);
-    }
-  });
-});
-
-renderPokemon(pokemonData);
+showType("all")
