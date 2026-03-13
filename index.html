@@ -1,29 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Pokedex</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="app">
-    <header class="topbar">
-      <h1 class="logo">Pokédex</h1>
 
-      <div class="filters">
-        <button class="filter-btn" data-type="all">Ver todos</button>
-        <button class="filter-btn normal" data-type="normal">Normal</button>
-        <button class="filter-btn fire" data-type="fire">Fire</button>
-        <button class="filter-btn water" data-type="water">Water</button>
-      </div>
-    </header>
+<h1>Pokédex</h1>
 
-    <main>
-      <section id="pokemon-container" class="pokemon-container"></section>
-    </main>
-  </div>
+<div class="buttons">
+  <button onclick="showType('all')">All</button>
+  <button onclick="showType('fire')">Fire</button>
+  <button onclick="showType('water')">Water</button>
+  <button onclick="showType('normal')">Normal</button>
+</div>
 
-  <script src="script.js"></script>
+<div id="pokemon-container"></div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
