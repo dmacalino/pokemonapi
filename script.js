@@ -70,3 +70,5 @@ buttons.forEach((button) => {
     }
   });
 });
+
+renderPokemon(pokemonData);
