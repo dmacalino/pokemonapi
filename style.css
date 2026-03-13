@@ -1,22 +1,129 @@
-body{
-  font-family: Arial;
-  background:#eee;
-  text-align:center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-button{
-  padding:10px;
-  margin:5px;
-  border:none;
-  background:#444;
-  color:white;
-  border-radius:5px;
+body {
+  font-family: Arial, sans-serif;
+  background: #efefef;
+  color: #222;
 }
 
-.card{
-  background:white;
-  width:200px;
-  margin:20px auto;
-  padding:15px;
-  border-radius:10px;
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+.topbar {
+  background: #f7f7f7;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.logo {
+  margin-bottom: 12px;
+  font-size: 2rem;
+}
+
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.filter-btn.normal {
+  background: #d7cf92;
+}
+
+.filter-btn.fire {
+  background: #ff8a3d;
+  color: white;
+}
+
+.filter-btn.water {
+  background: #6da8ff;
+  color: white;
+}
+
+.pokemon-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 30px;
+}
+
+.card {
+  width: 220px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.card img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.number {
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.types {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+}
+
+.type-badge.normal {
+  background: #b8ae6a;
+}
+
+.type-badge.fire {
+  background: #ff8a3d;
+}
+
+.type-badge.water {
+  background: #6da8ff;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  color: #444;
+  font-size: 0.9rem;
 }
