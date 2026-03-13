@@ -53,3 +53,20 @@ function renderPokemon(pokemonList) {
     container.innerHTML += card;
   });
 }
+
+const buttons = document.querySelectorAll(".filter-btn");
+
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const selectedType = button.dataset.type;
+
+    if (selectedType === "all") {
+      renderPokemon(pokemonData);
+    } else {
+      const filteredPokemon = pokemonData.filter((pokemon) =>
+        pokemon.type.includes(selectedType)
+      );
+      renderPokemon(filteredPokemon);
+    }
+  });
+});
